@@ -1,0 +1,182 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <style>
+        #todonow_pa-sennto{
+            color: white;
+            font-size: 20px;
+        }
+        #todonow{
+            background: linear-gradient(to bottom, #ccccff,#4d4dff 50%,#000099 50%, blue); 
+            
+        /*
+        明度-87.7
+        明度60
+        明度100
+
+        */
+
+            border-radius: 5px;
+        }
+        .todocard{
+            border-radius: 5px;
+            border:dimgray solid 3px;
+            width: 300px;
+            margin-top: 3px;
+            margin-bottom: 3px;
+        }
+        .delbutton{
+            border:solid white 0px;
+            border-right: solid dimgray 1px;
+            background-color: white;
+            border-radius: 0px;
+        }
+        #checkbox{
+            border-radius: 5px;
+            border:black solid 1px;
+            width: 310px;
+        }
+    </style>
+    <body>
+        <div id="main">
+            <span id="timmer_min">-</span>
+            <span>:</span>
+            <span id="timmer_sec">--</span>
+        </div>
+        <div id="sub">
+            <label><input id="mute"type="checkbox">通知をミュート</label>
+            <span id="status">勉強</span>
+        </div>
+        <div id="checkbox">
+            <div style="width: 300px;background-color: dimgray;box-shadow: 0px 0px 10px inset;border-radius: 5px;">
+                <div id="todonow" style="height: 30px;width: 0px;">
+                    <span id="todonow_pa-sennto">0%</span>
+                </div>
+            </div>
+            <div id="todolist">
+                <div class="todocard" id="c1"><input type="button" value="×" onclick="document.getElementById('c1').remove()" class="delbutton"><label><input class="todo" type="checkbox" onclick="TodoCheckboxCheck()">国語1ページ</label></div>
+                <div class="todocard" id="c2"><input type="button" value="×" onclick="document.getElementById('c2').remove()" class="delbutton"><label><input class="todo" type="checkbox" onclick="TodoCheckboxCheck()">国語2ページ</label></div>
+                <div class="todocard" id="c3"><input type="button" value="×" onclick="document.getElementById('c3').remove()" class="delbutton"><label><input class="todo" type="checkbox" onclick="TodoCheckboxCheck()">国語3ページ</label></div>
+                <div class="todocard" id="c4"><input type="button" value="×" onclick="document.getElementById('c4').remove()" class="delbutton"><label><input class="todo" type="checkbox" onclick="TodoCheckboxCheck()">国語4ページ</label></div>
+                <div class="todocard" id="c5"><input type="button" value="×" onclick="document.getElementById('c5').remove()" class="delbutton"><label><input class="todo" type="checkbox" onclick="TodoCheckboxCheck()">国語5ページ</label></div>
+                <div class="todocard" id="c6"><input type="button" value="×" onclick="document.getElementById('c6').remove()" class="delbutton"><label><input class="todo" type="checkbox" onclick="TodoCheckboxCheck()">国語6ページ</label></div>
+                <div class="todocard" id="c7"><input type="button" value="×" onclick="document.getElementById('c7').remove()" class="delbutton"><label><input class="todo" type="checkbox" onclick="TodoCheckboxCheck()">国語7ページ</label></div>
+            </div>
+            <input type="text" id="todoadd"><input type="button" onclick="add(document.getElementById('todoadd').value)" value="追加">
+        </div>
+        <input type="text" id="youtubeurl"><input type="button" value="設定" onclick='document.getElementsByTagName("iframe")[0].src=document.getElementById("youtubeurl").value.replace("https:\/\/www.youtube.com\/watch?v=", "https:\/\/www.youtube.com\/embed\/");'><br>
+        <iframe width="560" height="315" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+        <audio id="a" preload>
+            <source src="a.mp3" type="audio/mp3">
+        </audio>
+        <audio id="s" preload>
+            <source src="s.mp3" type="audio/mp3">
+        </audio>
+    </body>
+    <script>
+        var count=0;
+        var add_count=8;
+        let complete=false;
+        function add(title){
+            var newElement = document.createElement("div"); // p要素作成
+
+            newElement.setAttribute("id",`c${add_count}`); // p要素にidを設定
+            var parentDiv = document.getElementById("parent-div");
+            
+            // 追加
+            document.getElementById("todolist").appendChild(newElement);
+            document.getElementById(`c${add_count}`).innerHTML=`<div class="todocard" id="c${add_count}"><input type="button" value="×" onclick="document.getElementById('c${add_count}').remove()" class="delbutton"><label><input class="todo" type="checkbox" onclick="TodoCheckboxCheck()">${title}</label></div>`;
+            TodoCheckboxCheck();
+            add_count++;
+        }
+        function TodoCheckboxCheck(){
+            count=0;
+            for (let i = 0; i < document.getElementsByClassName("todo").length; i++) {
+                if (document.getElementsByClassName("todo")[i].checked) {
+                    count++;
+                }
+            }
+            if(Math.round(count*(100/document.getElementsByClassName("todo").length))==100){
+                document.getElementById("todonow").style.background="linear-gradient(to bottom, rgb(223, 255, 223),rgb(48, 138, 48) 50%,#004d00 50%, green)"; 
+                document.getElementById("s").play();
+                complete=true;
+            }else{
+                document.getElementById("todonow").style.background="linear-gradient(to bottom, #ccccff,#4d4dff 50%,#000099 50%, blue) "; 
+                document.getElementById("s").pause();
+                document.getElementById("s").currentTime = 0;
+                complete=false;
+            }
+            document.getElementById("todonow").style.width=`${count*(100/document.getElementsByClassName("todo").length)}%`
+            document.getElementById("todonow_pa-sennto").innerHTML=`${Math.round(count*(100/document.getElementsByClassName("todo").length))}%`
+        }
+        
+
+        const timmer_sec=document.getElementById("timmer_sec");
+        const timmer_min=document.getElementById("timmer_min");
+        let min1=1;
+        let sec1=1;
+        let min2=2;
+        let sec2=1;
+        let status=true;
+        let timmerstop;
+        timmer(40,0,10,0)
+
+
+        function timmer(now_min,now_sec,next_min,next_sec){
+            var old_now_min=now_min;
+            var old_now_sec=now_sec;
+            var old_next_min=next_min;
+            var old_next_sec=next_sec;
+
+            var timmer_tem=setInterval(
+                function(){
+
+                    if(!(now_sec==0&&now_min==0)){
+                        if(now_sec<=0){
+                            now_min-=1;
+                            now_sec=59;
+                        }else{
+                            now_sec-=1;
+                        }
+                        if(now_sec<10){
+                            if(complete==false){
+                                timmer_sec.innerHTML=`0${now_sec}`;
+                            }
+                        }else{
+                            if(complete==false){
+                                timmer_sec.innerHTML=now_sec;
+                            }
+                        }
+                        if(complete==false){timmer_min.innerHTML=now_min}
+                    }else{
+                        if(document.getElementById("mute").checked==false||complete==false){
+                            document.getElementById("a").play();
+                        }
+                        if(status){
+                            status=false;
+                            document.getElementById("status").innerHTML="休憩"
+                        }else{
+                            status=true;
+                            document.getElementById("status").innerHTML="勉強"
+                        }
+                        timmer(old_next_min,old_next_sec,old_now_min,old_now_sec);
+                        console.log(`timmer(${old_next_min},${old_next_sec},${old_now_min},${old_now_sec})`);
+                    }
+                }
+            , 1000);
+        }
+
+        
+        
+    function dev(num,min_sec="s"){
+        if(min_sec=="m"){
+            now_min=num;
+        }else{
+            now_sec=num;
+        }
+    }
+        //document.getElementById("timmer").innerHTML=Number(document.getElementById("timmer").innerHTML)+1
+    </script>
+</html>
