@@ -1,0 +1,193 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosansjp.css);
+body{
+    background-color: gainsboro;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+.highlight{
+    background-color:yellow;
+}
+.hide{
+    display: none;
+}
+
+
+main{
+    color: black;
+    position: absolute;
+    left: 200px;
+    top: 0px;
+    height: 100%;
+    z-index: 2;
+}
+section{
+    background-color: whitesmoke;
+    margin: 10px;
+    padding: 5px 10px;
+    box-shadow: 2px 2px 4px;
+    border-radius:5px;
+}
+section>h1{
+    border-bottom: solid black 2px;
+}
+#contents-menu{
+    position: fixed;
+    right: 0px;
+    top:0px;
+    background-color: gainsboro;
+    color: black;
+    width: 300px;
+    height: 100%;
+}
+@media screen and (max-width: 900px) {/*900px以下のとき(スマホ)*/
+
+    main{
+        color: black;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        height: 100%;
+        z-index: 1;
+        padding: 30px 10px 0px 0px;
+    }
+    header{
+        background-color: whitesmoke;
+        padding: 5px 10px;
+        box-shadow: 0px 2px 4px;
+        width: 100%;
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        z-index: 3;
+        height: 30px;
+    }
+    #search_word::placeholder{
+        color:darkgray;
+    }
+    #contents-menu{
+        position: fixed;
+        right: 0px;
+        top:0px;
+        background-color:rgba(0,0,0,0.8);
+        color: gainsboro;
+        width: 300px;
+        height: 100%;
+        z-index: 4;
+    }
+    #search_word{
+        border: solid gainsboro 1px;
+        color: gainsboro;
+    }
+    #for-mobile{
+        display: none;
+    }
+    #selecting{
+        background-color: dimgray;
+        color: whitesmoke;
+        border-radius:5px 5px 5px 5px;
+        height: 40px;
+        line-height:40px;
+        font-size: 20px;
+        width: 90%;
+        padding: 0px 0px 0px 10px;
+        display:block;
+        text-decoration: none;
+    }
+    .select-button{
+        background-color: whitesmoke;
+        color: black;
+        height: 40px;
+        line-height:40px;
+        font-size: 20px;
+        width: 100%;
+        padding: 0px 0px 0px 10px;
+        display:block;
+        text-decoration: none;
+    }
+
+}
+@media screen and (min-width:900px) {/*900px以上のとき(pc)*/
+    #close-button{
+        visibility:hidden;
+    }
+    #search_word::placeholder{
+        color:dimgray;
+    }
+    #search_word{
+        border: solid black 1px;
+        color: black;
+    }
+    nav{
+        background-color: dimgray;
+        width: 200px;
+        height: 100%;
+        position: fixed;
+        left: 0px;
+        top: 0px;
+    }
+    #selecting{
+        background-color: white;
+        color: black;
+        box-shadow: -2px 2px 4px inset;
+        border-radius:0px 5px 5px 0px;
+        height: 40px;
+        line-height:40px;
+        font-size: 20px;
+        width: 90%;
+        padding: 0px 0px 0px 10px;
+        display:block;
+        text-decoration: none;
+    }
+    .select-button{
+        background-color: dimgray;
+        color: white;
+        height: 40px;
+        line-height:40px;
+        font-size: 20px;
+        width: 90%;
+        padding: 0px 0px 0px 10px;
+        display:block;
+        text-decoration: none;
+    }
+    #for-mobile{
+        display: none;
+    }
+
+}
+
+.slideout-menu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 256px;
+  min-height: 100vh;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  z-index: 0;
+  display: none;
+}
+
+.slideout-menu-left {
+  left: 0;
+}
+
+.slideout-menu-right {
+  right: 0;
+}
+
+.slideout-panel {
+  position: relative;
+  z-index: 1;
+  will-change: transform;
+  background-color: gainsboro; /* A background-color is required */
+  min-height: 100vh;
+}
+
+.slideout-open,
+.slideout-open body,
+.slideout-open .slideout-panel {
+  overflow: hidden;
+}
+
+.slideout-open .slideout-menu {
+  display: block;
+}

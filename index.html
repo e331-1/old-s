@@ -1,0 +1,31 @@
+
+<head>
+    <meta charset="utf-8">
+    <!--
+        そこの君!
+        恥ずかしいからソースコードは見るんじゃない!
+    -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header>
+        <span onclick="contents_menu.open();">≡</span>
+        <a href="javascript:navdisplay();" style="color: black;text-decoration: none;" id="subject"></a>
+        <nav id="for-mobile"></nav>
+    </header>
+    <nav>
+        <div style="height: 10px;"></div>
+    </nav>
+    <main>
+    </main>
+
+    <div id="contents-menu">
+        <a id="close-button" onclick="contents_menu.close();" style="color: gainsboro;">×</a>
+        <input id="search_word" placeholder="ページ内検索" type="text" style="background-color:rgba(0,0,0,0);border-radius:5px;margin: 10px 10px 0px 10px;">
+        <ul id="contents">
+        </ul>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+    <script src="./script.js"></script>
+</body>
