@@ -61,8 +61,10 @@ if(window.innerWidth>900){
 window.addEventListener('resize', function(){
     if(window.innerWidth>900){
         document.getElementsByTagName("main")[0].style.width=window.innerWidth-520;
+        location.reload()
     }else{
         document.getElementsByTagName("main")[0].style.width=window.innerWidth-20;
+        location.reload()
         contents_menu = new Slideout({
             'panel': document.getElementsByTagName("main")[0],
             'menu': document.getElementById("contents-menu"),
