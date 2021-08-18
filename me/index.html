@@ -161,11 +161,12 @@
                         }
                         if(status){
                             status=false;
-                            document.getElementById("status").innerHTML="休憩"
+                            document.getElementById("status").innerHTML="休憩";
                         }else{
                             status=true;
-                            document.getElementById("status").innerHTML="勉強"
+                            document.getElementById("status").innerHTML="勉強";
                         }
+                        clearInterval(timmer_tem);
                         timmer(old_next_min,old_next_sec,old_now_min,old_now_sec);
                         console.log(`timmer(${old_next_min},${old_next_sec},${old_now_min},${old_now_sec})`);
                     }
