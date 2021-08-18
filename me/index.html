@@ -4,7 +4,7 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
     </head>
     <style>
-        @import url(https://fonts.googleapis.com/earlyaccess/notosansjp.css);
+        @import url(http://fonts.googleapis.com/earlyaccess/notosansjp.css);
         body{
             font-family: 'Noto Sans JP', sans-serif;
         }
@@ -45,13 +45,18 @@
     </style>
     <body>
         <div id="main">
-            <span id="timmer_min">-</span>
+            <small>残り</small>
+            <span id="timmer_min">0</span>
             <span>:</span>
-            <span id="timmer_sec">--</span>
+            <span id="timmer_sec">00</span>
+            <small>で</small>
+            <small id="status_next">休憩</small>
+            <small>時間になります</small>
         </div>
         <div id="sub">
-            <label><input id="mute"type="checkbox">通知をミュート</label>
-            <span id="status">勉強</span>
+            <span id="status">勉強だぜ!</span><br>
+            <label><input id="mute"type="checkbox"><small>通知をミュート</small></label>
+            <input type="button" onclick="timmer_start()" id="start_button" value="スタート">
         </div>
         <div id="checkbox">
             <div style="width: 300px;background-color: dimgray;box-shadow: 0px 0px 10px inset;border-radius: 5px;">
@@ -84,6 +89,11 @@
         var count=0;
         var add_count=8;
         let complete=false;
+        let result_40=0;
+        function timmer_start(){
+            timmer(40,0,0,10);
+            document.getElementById("start_button").remove();
+        }
         function add(title){
             var newElement = document.createElement("div"); // p要素作成
 
@@ -106,6 +116,7 @@
             if(Math.round(count*(100/document.getElementsByClassName("todo").length))==100){
                 document.getElementById("todonow").style.background="linear-gradient(to bottom, rgb(223, 255, 223),rgb(48, 138, 48) 50%,#004d00 50%, green)"; 
                 document.getElementById("s").play();
+                document.getElementById("status").innerHTML=`勉強した時間は${Math.floor((result_40*40+Number(document.getElementById("timmer_min").innerHTML))/60)}:${(result_40*40+Number(document.getElementById("timmer_min").innerHTML))%60}:${document.getElementById("timmer_sec").innerHTML}だ!お疲れ!`;
                 complete=true;
             }else{
                 document.getElementById("todonow").style.background="linear-gradient(to bottom, #ccccff,#4d4dff 50%,#000099 50%, blue) "; 
@@ -127,8 +138,8 @@
         let status=true;
         let timmerstop;
         
-        
-        timmer(40,0,10,0);
+
+
         function timmer(now_min,now_sec,next_min,next_sec){
             var old_now_min=now_min;
             var old_now_sec=now_sec;
@@ -156,15 +167,25 @@
                         }
                         if(complete==false){timmer_min.innerHTML=now_min}
                     }else{
-                        if(document.getElementById("mute").checked==false||complete==false){
+                        if(document.getElementById("mute").checked==false&&complete==false){
                             document.getElementById("a").play();
                         }
                         if(status){
-                            status=false;
-                            document.getElementById("status").innerHTML="休憩";
+                            if(complete==false){
+                                status=false;
+                                document.getElementById("status_next").innerHTML="勉強";
+                                document.getElementById("status").innerHTML="休憩だぜ!";
+                            }
                         }else{
-                            status=true;
-                            document.getElementById("status").innerHTML="勉強";
+                            if(complete==false){
+                                status=true;
+                                document.getElementById("status_next").innerHTML="休憩";
+                                document.getElementById("status").innerHTML="勉強だぜ!";
+                            }
+                        }
+                        if(old_now_sec==5){
+                            result_40++;
+                            console.log("+");
                         }
                         clearInterval(timmer_tem);
                         timmer(old_next_min,old_next_sec,old_now_min,old_now_sec);
