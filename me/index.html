@@ -116,12 +116,19 @@
             if(Math.round(count*(100/document.getElementsByClassName("todo").length))==100){
                 document.getElementById("todonow").style.background="linear-gradient(to bottom, rgb(223, 255, 223),rgb(48, 138, 48) 50%,#004d00 50%, green)"; 
                 document.getElementById("s").play();
-                document.getElementById("status").innerHTML=`勉強した時間は${Math.floor((result_40*40+Number(document.getElementById("timmer_min").innerHTML))/60)}:${(result_40*40+Number(document.getElementById("timmer_min").innerHTML))%60}:${document.getElementById("timmer_sec").innerHTML}だ!お疲れ!`;
+                document.getElementById("status").innerHTML=`勉強した時間は${Math.floor((result_40*40+Number(document.getElementById("timmer_min").innerHTML))/60)}時間${result_40*40+(40-(Number(document.getElementById("timmer_min").innerHTML))%60)}分${60-document.getElementById("timmer_sec").innerHTML}秒だ!お疲れ!`;
                 complete=true;
             }else{
                 document.getElementById("todonow").style.background="linear-gradient(to bottom, #ccccff,#4d4dff 50%,#000099 50%, blue) "; 
                 document.getElementById("s").pause();
                 document.getElementById("s").currentTime = 0;
+                if(!status){
+                    document.getElementById("status_next").innerHTML="勉強";
+                    document.getElementById("status").innerHTML="休憩だぜ!";
+                }else{
+                    document.getElementById("status_next").innerHTML="休憩";
+                    document.getElementById("status").innerHTML="勉強だぜ!";
+                }
                 complete=false;
             }
             document.getElementById("todonow").style.width=`${count*(100/document.getElementsByClassName("todo").length)}%`
