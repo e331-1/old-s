@@ -75,8 +75,8 @@
             </div>
             <input type="text" id="todoadd"><input type="button" onclick="add(document.getElementById('todoadd').value)" value="追加">
         </div>
-        <input type="text" id="youtubeurl"><input type="button" value="設定" onclick='document.getElementsByTagName("iframe")[0].src=document.getElementById("youtubeurl").value.replace("https:\/\/www.youtube.com\/watch?v=", "https:\/\/www.youtube.com\/embed\/");'><br>
-        <iframe width="560" height="315" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        <input type="text" id="youtubeurl" value="https://www.youtube.com/watch?v=1hkujgIk5Mw"><input type="button" value="設定" onclick='document.getElementsByTagName("iframe")[0].src=document.getElementById("youtubeurl").value.replace("https:\/\/www.youtube.com\/watch?v=", "https:\/\/www.youtube.com\/embed\/");'><br>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/1hkujgIk5Mw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
         </iframe>
         <audio id="a" preload>
             <source src="a.mp3" type="audio/mp3">
