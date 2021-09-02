@@ -20,7 +20,7 @@ if(window.innerWidth>900){
             var count=0;
             JSON.parse(xhr.responseText).forEach(function(element){
                 var newElement = document.createElement("a");
-                newElement.setAttribute("href",`javascript:jsonreq(${element.json})`);
+                newElement.setAttribute("href",`javascript:jsonreq(${element.source})`);
                 newElement.setAttribute("class",`select-button`);
                 document.getElementsByTagName("nav")[1].appendChild(newElement);
                 document.getElementsByClassName("select-button")[count].innerHTML=element.title;
@@ -47,7 +47,7 @@ if(window.innerWidth>900){
             var count=0;
             JSON.parse(xhr.responseText).forEach(function(element){
                 var newElement = document.createElement("a");
-                newElement.setAttribute("href",`javascript:jsonreq(${element.json})`);
+                newElement.setAttribute("href",`javascript:jsonreq(${element.source})`);
                 newElement.setAttribute("class",`select-button`);
                 document.getElementById("for-mobile").appendChild(newElement);
                 document.getElementsByClassName("select-button")[count].innerHTML=element.title;
