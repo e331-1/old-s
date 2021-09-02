@@ -23,7 +23,7 @@ if(window.innerWidth>900){
                 if(element.mode=="json"){
                     newElement.setAttribute("href",`javascript:jsonreq(${element.source})`);
                 }else if(element.mode="iflame"){
-                    newElement.setAttribute("href",`javascript:iflamereq("${element.source}")`);
+                    newElement.setAttribute("href",`javascript:iflamereq('${element.source}')`);
                 }
                 newElement.setAttribute("class",`select-button`);
                 document.getElementsByTagName("nav")[1].appendChild(newElement);
