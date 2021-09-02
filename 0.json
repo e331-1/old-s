@@ -1,12 +1,15 @@
 [
     {
         "title":"使い方",
-        "json":"1"
+        "json":"1",
+        "mode":"json"
     },{
         "title":"国語",
-        "json":"2"
+        "json":"2",
+        "mode":"json"
     },{
         "title":"英語",
-        "json":"3"
+        "json":"3",
+        "mode":"json"
     }
 ]
