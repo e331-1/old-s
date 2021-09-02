@@ -104,6 +104,8 @@ function navdisplay(){
     }
 }
 function iflamereq(url){
+    document.getElementsByTagName("main")[0].innerHTML="";
+    document.getElementById("contents").innerHTML=""
     var newElement = document.createElement("iflame");
     newElement.setAttribute("src",url);
     newElement.setAttribute("class","iflame");
@@ -111,6 +113,7 @@ function iflamereq(url){
     document.getElementsByClassName("select-button")[count].innerHTML=element.title;
     navdisplay();
 }
+
 function jsonreq(number,autoclose=true){
     var xhr = new XMLHttpRequest();
     xhr.open('get', `./${number}.json`);
