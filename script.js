@@ -20,8 +20,11 @@ if(window.innerWidth>900){
             var count=0;
             JSON.parse(xhr.responseText).forEach(function(element){
                 var newElement = document.createElement("a");
-                newElement.setAttribute("href",`javascript:jsonreq(${element.source})`);
-                newElement.setAttribute("data-mode",element.mode);
+                if(element.mode=="json"){
+                    newElement.setAttribute("href",`javascript:jsonreq(${element.source})`);
+                }else if(element.mode="iflame"){
+                    newElement.setAttribute("href",`javascript:iflamereq(${element.source})`);
+                }
                 newElement.setAttribute("class",`select-button`);
                 document.getElementsByTagName("nav")[1].appendChild(newElement);
                 document.getElementsByClassName("select-button")[count].innerHTML=element.title;
@@ -48,7 +51,11 @@ if(window.innerWidth>900){
             var count=0;
             JSON.parse(xhr.responseText).forEach(function(element){
                 var newElement = document.createElement("a");
-                newElement.setAttribute("href",`javascript:jsonreq(${element.source})`);
+                if(element.mode=="json"){
+                    newElement.setAttribute("href",`javascript:jsonreq(${element.source})`);
+                }else if(element.mode="iflame"){
+                    newElement.setAttribute("href",`javascript:iflamereq(${element.source})`);
+                }
                 newElement.setAttribute("data-mode",element.mode);
                 newElement.setAttribute("class",`select-button`);
                 document.getElementById("for-mobile").appendChild(newElement);
@@ -95,6 +102,13 @@ function navdisplay(){
             onoff=false;
         }
     }
+}
+function iflamereq(url){
+    var newElement = document.createElement("iflame");
+    newElement.setAttribute("src",url);
+    newElement.setAttribute("class","iflame");
+    document.getElementsByTagName("main")[0].appendChild(newElement);
+    document.getElementsByClassName("select-button")[count].innerHTML=element.title;
 }
 function jsonreq(number,autoclose=true){
     var xhr = new XMLHttpRequest();
