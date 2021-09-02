@@ -109,6 +109,7 @@ function iflamereq(url){
     newElement.setAttribute("class","iflame");
     document.getElementsByTagName("main")[0].appendChild(newElement);
     document.getElementsByClassName("select-button")[count].innerHTML=element.title;
+    navdisplay();
 }
 function jsonreq(number,autoclose=true){
     var xhr = new XMLHttpRequest();
