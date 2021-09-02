@@ -29,6 +29,9 @@ section{
 section>h1{
     border-bottom: solid black 2px;
 }
+.iflame{
+    width: 100%;
+}
 #contents-menu{
     position: fixed;
     right: 0px;
