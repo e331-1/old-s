@@ -11,5 +11,9 @@
         "title":"英語",
         "source":"3",
         "mode":"json"
+    },{
+        "title":"iflame",
+        "source":"https://discord.com/widget?id=821351290088718367&theme=dark",
+        "mode":"iflame"
     }
 ]
